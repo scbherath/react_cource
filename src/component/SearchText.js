@@ -1,8 +1,13 @@
 import React from 'react';
 
-const SearchText = () => {
+const SearchText = ({value, handleOnChange}) => {
     return (
-        <input type="text" placeholder='Searching...'></input>
+        <input 
+            type="text" 
+            value={value}
+            placeholder='Searching...'
+            onChange={handleOnChange}
+        />
     );
 }
 

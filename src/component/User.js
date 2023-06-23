@@ -1,6 +1,6 @@
 import React from 'react';
 
-const User = ({id, name, email, age}) => {
+const User = ({id, fname, lname, username}) => {
      
     return (
         <div key={id} className='row'>       
@@ -8,13 +8,13 @@ const User = ({id, name, email, age}) => {
                 {id}
             </div>  
             <div className='col-md-2'>
-                {name}
+                {fname}
             </div>
             <div className='col-md-2'>
-                {email}
+                {lname}
             </div>
             <div className='col-md-2'>
-                {age}
+                {username}
             </div>
         </div>
     );
