@@ -18,35 +18,23 @@ class App extends Component{
             loading : null,
             error: null,
             searchText: ''
-        }
-
-        this.loadAllUsers = this.loadAllUsers.bind(this);
-
-        this.url = 'https://www.melivecode.com/api/users';
+        }        
 
         this.handleSearchOnChange = this.handleSearchOnChange.bind(this);
-
+        this.handleAddUserData = this.handleAddUserData.bind(this);
 
     }
 
-    componentDidMount(){
-        this.loadAllUsers();
-    }
-
-    loadAllUsers(){
-        this.setState({loading:true});
-        axios.get(this.url)
-        .then(res => {
-            this.setState({users:res.data});
-            //console.log(res.data);
-            this.setState({loading:false});
-        });
-        
-    }
+    
 
     handleSearchOnChange(e){
         this.setState({ searchText: e.target.value});
     }
+
+    handleAddUserData(user) {
+        console.log('user',user);
+        this.setState({ users: this.state.users.concat(user) })
+    };
 
     render (){
         const heading = {
@@ -55,26 +43,23 @@ class App extends Component{
         };
         const count = this.state.users.length;
         const searching = this.state.searchText;
-        console.log('searchText',searching);
         const users = this.state.users;
 
-        const fillteredUser = users.filter((user)=> user.fname.toLowerCase().indexOf(searching.toLowerCase())>-1) 
+        //const fillteredUser = users.filter((user)=> user.fname.toLowerCase().indexOf(searching.toLowerCase())>-1) 
         //console.log(filltered);
-
+        const fillteredUser = users;
         return (
             <div>
-                {this.state.loading && <div>Loading</div>}
-                {count}
-                <Layouts>
+                
+                <Layouts size='6'>
                     <Header {...heading} />
 
                     <SearchText 
                         value={searching}
                         handleOnChange={this.handleSearchOnChange}
                     />
-                    <UserForm />
+                    <UserForm handleAddUserData={this.handleAddUserData}/>
                     <UserList users={fillteredUser}/>
-
                 </Layouts>
 
 

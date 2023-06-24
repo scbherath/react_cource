@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Layouts = ({children}) => {
+const Layouts = ({size, children}) => {
     return (        
         <div className='container'>               
             <div className='row'>
-                <div className='col-md-6'>                
+                <div className={`col-md-${size}`}>                
                     {children}
                 </div>
             </div>

@@ -1,11 +1,20 @@
 import React from 'react';
-import User from './User';
+//import PropTypes from 'prop-types';
 
-const UserList = ({users}) => {
-    const userListView = users.map((user) => (
-        <User key={user.id} {...user}>{user.id}</User>
-    ))
-    return (userListView);
-}
+import UserListItem from './UserListItem';
+import EmptyMessage from './EmptyMessage';
+
+const UserList = ({ users }) => {
+    const renderElement = users.length
+        ? users.map((user) => (
+            <UserListItem key={user.id} {...user} />
+        )) : <EmptyMessage text="Result not found." />
+    return (
+        <ul className="list-group mt-4">
+            {renderElement}
+        </ul>
+    )
+};
+
 
 export default UserList;
